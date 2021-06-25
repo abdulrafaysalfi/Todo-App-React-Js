@@ -1,23 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
 
 function App() {
+  const [tasks, setTasks] = useState([]);
+  const [task, setTask] = useState("");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="app">
+      <div className="taskbox">
+        <input
+          placeholder="Enter Task"
+          type="text"
+          name="task"
+          id="task"
+          pattern="[A-Za-z]{3}"
+          value={task}
+          onChange={(e) => {
+            setTask(e.target.value);
+          }}
+        />
+        <button
+          className="addBtn"
+          type="submit"
+          onClick={(e) => {
+            if (task !== "") {
+              setTasks([...tasks, task]);
+              setTask("");
+            } else {
+              alert("Task Field Can't be Empty..");
+            }
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          Add
+        </button>
+      </div>
+      <div>
+        {tasks.map((task, index) => (
+          <div key={index} className="addedTasks">
+            <input
+              type="checkbox"
+              value={false}
+              onClick={(e) => {
+                setTimeout(() => {
+                  setTasks(tasks.filter((data, indx) => indx !== index));
+                  e.preventDefault();
+                }, 1000);
+              }}
+            />
+            <p>{task}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
