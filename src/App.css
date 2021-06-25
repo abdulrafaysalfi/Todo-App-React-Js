@@ -3,6 +3,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+.title {
+  margin-bottom: 4rem;
+}
 .app {
   width: 100vw;
   min-height: 100vh;
@@ -40,12 +43,19 @@ button:hover {
   justify-content: space-between;
 }
 .addedTasks:hover {
-  background-color: aqua;
   border: 0.1rem solid #000000;
   margin: 0.5rem 0rem;
-  opacity: 0.7;
+  font-weight: bold;
 }
 .addedTasks > p {
   font-size: 18px;
   margin-left: 1rem;
+  flex: 2;
+}
+.icon {
+  margin-right: 0.5rem;
+}
+.icon:hover {
+  cursor: pointer;
+  color: red;
 }

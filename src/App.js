@@ -1,11 +1,12 @@
 import { useState } from "react";
 import "./App.css";
-
+import ClearIcon from "@material-ui/icons/Clear";
 function App() {
   const [tasks, setTasks] = useState([]);
   const [task, setTask] = useState("");
   return (
     <div className="app">
+      <h1 className="title">React Todo App</h1>
       <div className="taskbox">
         <input
           placeholder="Enter Task"
@@ -33,23 +34,22 @@ function App() {
           Add
         </button>
       </div>
-      <div>
-        {tasks.map((task, index) => (
-          <div key={index} className="addedTasks">
-            <input
-              type="checkbox"
-              value={false}
-              onClick={(e) => {
-                setTimeout(() => {
-                  setTasks(tasks.filter((data, indx) => indx !== index));
-                  e.preventDefault();
-                }, 1000);
-              }}
-            />
-            <p>{task}</p>
-          </div>
-        ))}
-      </div>
+
+      {tasks.map((task, index) => (
+        <div key={index} className="addedTasks">
+          <p>{task}</p>
+
+          <ClearIcon
+            className="icon"
+            onClick={(e) => {
+              setTimeout(() => {
+                setTasks(tasks.filter((data, indx) => indx !== index));
+                e.preventDefault();
+              }, 1000);
+            }}
+          />
+        </div>
+      ))}
     </div>
   );
 }
